@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';
@@ -8,6 +9,15 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   bool playVideo = false;
   bool playSound = false;
   bool playVoice = false;
+
+  final videoController = YoutubePlayerController(
+    initialVideoId: 'PLHddf-1MHY',
+    flags: YoutubePlayerFlags(
+      autoPlay: false,
+      mute: false,
+      hideThumbnail: false,
+    ),
+  );
 
   ChatBloc() : super(ChatInitialState()) {
     on<PlayVideoEvent>(pressPlayVideo);
